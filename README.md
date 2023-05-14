@@ -11,5 +11,5 @@
 > Bool.h:		True & False enums
 > bytes.h:		Structs for manipulating strings
 > str.c:		String functions
-> m_malloc.c:	My malloc implementation
+> m_malloc.c:		My malloc implementation
 ```
