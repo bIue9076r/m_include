@@ -2,12 +2,17 @@
 #define M_MALLOC_C
 #include "m_malloc.h"
 
+__1024_s_t	STACK[1024];
+long long	_m_offset = 0;
+void*	BASESTACK	=	STACK;
+void*	MAX_STACK	=	STACK + (sizeof(__1024_s_t) * 1024);
+
 void* m_malloc(int size){
-	if ((BASESTACK + offset + size) > MAX_STACK){
-		offset = 0;}
+	if ((BASESTACK + _m_offset + size) > MAX_STACK){
+		_m_offset = 0;}
 	
-	void* ptr = BASESTACK + offset;
-	offset = offset + size;
+	void* ptr = BASESTACK + _m_offset;
+	_m_offset = _m_offset + size;
 	return ptr;
 }
 

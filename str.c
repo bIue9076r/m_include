@@ -1,6 +1,5 @@
 #ifndef STR_C
 #define STR_C
-#include "Bool.h"
 #include "str.h"
 
 int stl(char str[]){

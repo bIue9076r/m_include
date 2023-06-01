@@ -1,5 +1,6 @@
 #ifndef STR_H
 #define STR_H
+#include "Bool.h"
 
 int		stl		(char[]);
 int		stn		(char[]);
