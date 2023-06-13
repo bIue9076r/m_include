@@ -33,13 +33,48 @@ void scpyn(int n, char dst[], char src[]){
 	}
 }
 
-char* ssplit(char str[], char del[]){
-	int len = stl(str);
-	char st[len];
-	char* ret;
+Bool charisof(char chr, char lst[]){
+	int len = stl(lst);
+	Bool r = False;
+
 	for (int i = 0; i < len; i++){
-		
+		r = (chr == lst[i]) ? (r + True) : (r);
 	}
+
+	return !!r;
+}
+
+sstr_t ssplit(char str[], char del[]){
+	int len = stl(str);
+	char** ret;
+	int retlen = 0;
+	char stmp[len];
+	for(int _=0;_<len;_++){stmp[_]=0;}
+	char* tmp;
+	int rd = 0;
+	Bool empty = True;
+
+	for (int i = 0; i < len; i++){
+		if(!empty && charisof(str[i],del)){
+			char** nret = m_malloc(sizeof(char*) * (retlen + 1));
+			for (int v = 0; v < retlen; v++){nret[v]=ret[v];}
+			nret[retlen] = tmp;
+			ret = nret;
+			retlen++;
+
+			for(int _=0;_<len;_++){stmp[_]=0;}
+			rd = 0;
+			continue;
+		}
+
+		stmp[rd] = str[i];
+		tmp = m_malloc(sizeof(char) * stl(stmp));
+		scpyn(stl(stmp),tmp,stmp);
+		rd++;
+		empty = False;
+	}
+	
+	return (sstr_t){ret,retlen};
 }
 
 void Toupper(char str[]){

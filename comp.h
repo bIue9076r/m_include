@@ -28,7 +28,7 @@ typedef struct complex_Class_s {
     struct complex_Class_s (*ssub)(struct complex_Class_s*,double);
     struct complex_Class_s (*smul)(struct complex_Class_s*,double);
 
-	/* You have to use the standard libary for this*/
+	/* You have to use the standard libary for this */
 	#ifdef _INC_STDIO
     void (*printcall)(struct complex_Class_s*);
 	#endif
@@ -51,7 +51,7 @@ complex_Class   Csmul (complex_Class*,double);
 double   CRe (complex_Class*);
 double   CImg (complex_Class*);
 
-/* You have to use the standard libary for this*/
+/* You have to use the standard libary for this */
 #ifdef _INC_STDIO
 void    Cprint  (complex_Class*);
 #endif
@@ -61,7 +61,7 @@ complex_Class Complex = {
     &Cadd,&Csub,&Cmul,
     &Csadd,&Cssub,&Csmul,
 
-    /* You have to use the standard libary for this*/
+    /* You have to use the standard libary for this */
 	#ifdef _INC_STDIO
     &Cprint,
 	#endif
@@ -75,7 +75,7 @@ complex_Class I = {
     &Cadd,&Csub,&Cmul,
     &Csadd,&Cssub,&Csmul,
 
-	/* You have to use the standard libary for this*/
+	/* You have to use the standard libary for this */
 	#ifdef _INC_STDIO
     &Cprint,
 	#endif

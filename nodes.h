@@ -10,7 +10,7 @@ typedef struct node_s {
 
 void insertData(node* Root,int d);
 
-/* You have to use the standard libary for this*/
+/* You have to use the standard libary for this */
 #ifdef _INC_STDIO
 void printNodes_i(node* Root,int level);
 void printNodes(node* Root);

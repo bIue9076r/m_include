@@ -103,7 +103,7 @@ double   CImg (complex_Class* a){
     return Imaginary(&a->number);
 }
 
-/* You have to use the standard libary for this*/
+/* You have to use the standard libary for this */
 #ifdef _INC_STDIO
 void    Cprint  (complex_Class* a){
     char* s;
@@ -120,7 +120,7 @@ complex_Class complex_ClassNew(double r, double i){
         &Cadd,&Csub,&Cmul,
         &Csadd,&Cssub,&Csmul,
 
-        /* You have to use the standard libary for this*/
+        /* You have to use the standard libary for this */
 		#ifdef _INC_STDIO
     	&Cprint,
 		#endif

@@ -88,7 +88,7 @@ double vec_z(vector* A){
     return A->vector.z;
 }
 
-/* You have to use the standard libary for this*/
+/* You have to use the standard libary for this */
 #ifdef _INC_STDIO
 void vprint(vector* A){
     printf("%f %f %f\n",A->vector.x,A->vector.y,A->vector.z);
@@ -109,7 +109,7 @@ vector vec_new(double x, double y, double z){
         &vec_y,&vec_y,
         &vec_z,&vec_z,
 
-		/* You have to use the standard libary for this*/
+		/* You have to use the standard libary for this */
 		#ifdef _INC_STDIO
         &vprint,&vfprint,
 		#endif
