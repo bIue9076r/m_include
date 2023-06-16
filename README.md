@@ -3,7 +3,16 @@
 ---
 * "I'm too good for the standard library"
 
-<br> <br>
+<br>
+
+## Updates:
+* This list
+* changes to `makefile`
+* "bool.h" changed to "Bool.h" in several files
+* str.c swaped `ToUpper` and `ToLower`
+* m_malloc stack/heap size from 1024 -> 65536
+
+<br>
 
 ### Files and their functions:
 ---

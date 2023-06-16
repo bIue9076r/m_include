@@ -1,6 +1,6 @@
 #ifndef M_MATH_H
 #define M_MATH_H
-#include "bool.h"
+#include "Bool.h"
 
 extern const double pi;
 extern const double pi2;

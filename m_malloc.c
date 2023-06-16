@@ -2,7 +2,7 @@
 #define M_MALLOC_C
 #include "m_malloc.h"
 
-__1024_s_t	STACK[1024];
+__1024_s_t	STACK[0x10000];
 long long	_m_offset = 0;
 void*	BASESTACK	=	STACK;
 void*	MAX_STACK	=	STACK + (sizeof(__1024_s_t) * 1024);

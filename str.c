@@ -81,7 +81,7 @@ void Toupper(char str[]){
 	int len = stl(str);
 
 	for (int i = 0; i < len; i++){
-		str[i] = str[i] + ((str[i] > 96 && str[i] < 127)?(32):(0));
+		str[i] = str[i] + ((str[i] > 96 && str[i] < 127)?(-32):(0));
 	}
 }
 
@@ -89,7 +89,7 @@ void Tolower(char str[]){
 	int len = stl(str);
 
 	for (int i = 0; i < len; i++){
-		str[i] = str[i] + ((str[i] > 64 && str[i] < 91)?(-32):(0));
+		str[i] = str[i] + ((str[i] > 64 && str[i] < 91)?(32):(0));
 	}
 }
 

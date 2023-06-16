@@ -1,6 +1,6 @@
 #ifndef FATSTR_H
 #define FATSTR_H
-#include "bool.h"
+#include "Bool.h"
 #include "m_malloc.h"
 
 typedef struct _fatstr_s {
