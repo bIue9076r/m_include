@@ -10,6 +10,7 @@ typedef struct _fatstr_s {
 
 Bool inRange(char);
 int getlen(char[]);
+int fstn(char[]);
 fatstr newString(int);
 void fcpy(fatstr*,char*);
 void fcpyn(fatstr*,char*,int);

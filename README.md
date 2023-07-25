@@ -6,11 +6,14 @@
 <br>
 
 ## Updates:
-* This list
-* changes to `makefile`
-* "bool.h" changed to "Bool.h" in several files
-* str.c swaped `ToUpper` and `ToLower`
-* m_malloc stack/heap size from 1024 -> 65536
+* moved `vector Vector` to `vector.c`
+* moved `complex_Class Complex` to `comp.c`
+* `vector.c` now includes `m_math.h`
+* `m_math.c` new functions
+	* `map` and `imap`
+	* `max`, `imax`, `amax`, and `iamax` from `vector.c`
+* `str.h`: `charisof` decleration
+* `fatstr.h`: `fstn` decleration
 
 <br>
 

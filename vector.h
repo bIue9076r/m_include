@@ -1,9 +1,6 @@
 #ifndef VECTOR_H
 #define VECTOR_H
 
-double max(double,double);
-int imax(int,int);
-
 typedef struct vec_s {
     double x;
     double y;
@@ -15,7 +12,7 @@ vec vsub(vec*,vec*);
 vec vmul(vec*,double);
 double vdot(vec*,vec*);
 vec vcross(vec*,vec*);
-vec clamp(vec*,double);
+vec vclamp(vec*,double);
 
 typedef struct vect_s {
     struct vect_s (*new)(double,double,double);
@@ -59,25 +56,12 @@ void vprint(vector*);
 void vfprint(FILE*,vector*);
 #endif
 
-const vector Vector = {
-    &vec_new,
-    &vec_add,&vec_sub,
-    &vec_mul,&vec_dot,
-    &vec_cross,&vec_clamp,
-    &vec_x,&vec_x,
-    &vec_y,&vec_y,
-    &vec_z,&vec_z,
-
-	/* You have to use the standard libary for this*/
-	#ifdef _INC_STDIO
-    &vprint,&vfprint,
-	#endif
-    {0,0,0},
-};
-
 typedef struct ray_s {
     vector origin;
     vector direction;
 } ray;
+
+extern const vector Vector;
+extern const vector V;
 
 #endif

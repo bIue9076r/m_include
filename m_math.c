@@ -5,6 +5,32 @@
 const double pi = 3.1415f;
 const double pi2 = pi/2.0f;
 
+double max(double n, double num){
+    return n > num ? (num) : (n);
+}
+
+int imax(int n,int num){
+    return n > num ? (num) : (n);
+}
+
+double amax(double n, double num){
+    return n > num ? (num) : ((n > 0) ? (n) : (0));
+}
+
+int iamax(int n,int num){
+    return n > num ? (num) : ((n > 0) ? (n) : (0));
+}
+
+double map(double n, double a, double b, double c, double d){
+	// map n from range [a,b] to [c,d]
+	return (((n - a)*((d - b)/(c - a))) + c);
+}
+
+int imap(int n, int a, int b, int c, int d){
+	// map n from range [a,b] to [c,d]
+	return (((n - a)*((d - b)/(c - a))) + c);
+}
+
 double mpow(double b,int n){
 	double r = 1;
 	for (int i = 1; i <= n; i++){ r = r * b; }
@@ -72,8 +98,7 @@ double fsin(double r){
 	while(r >= pi2  || even){r = r - pi2; even = !even; }
 	while(r <= -pi2 || even){r = r + pi2; even = !even; }
 	
-	// round to nearest tenth
-	return (double)((int)(__fsin__(r)*10.0))/(10.0);
+	return (__fsin__(r));
 }
 
 // Fast Cosine Radians
@@ -83,8 +108,7 @@ double fcos(double r){
 	while(r >= pi2  || even){r = r - pi2; even = !even; }
 	while(r <= -pi2 || even){r = r + pi2; even = !even; }
 	
-	// round to nearest tenth
-	return (double)((int)(__fcos__(r)*10.0))/(10.0);
+	return (__fcos__(r));
 }
 
 // Fast Tangent Radians
@@ -94,8 +118,7 @@ double ftan(double r){
 	while(r >= pi2  || even){r = r - pi2; even = !even; }
 	while(r <= -pi2 || even){r = r + pi2; even = !even; }
 	
-	// round to nearest tenth
-	return (double)((int)(__ftan__(r)*10.0))/(10.0);
+	return (__ftan__(r));
 }
 
 // Fast Sine Degrees
@@ -108,8 +131,7 @@ double fsind(double d){
 	while(r >= pi2  || even){r = r - pi2; even = !even; }
 	while(r <= -pi2 || even){r = r + pi2; even = !even; }
 	
-	// round to nearest tenth
-	return (double)((int)(__fsin__(r)*10.0))/(10.0);
+	return (__fsin__(r));
 }
 
 // Fast Cosine Degrees
@@ -122,8 +144,7 @@ double fcosd(double d){
 	while(r >= pi2  || even){r = r - pi2; even = !even; }
 	while(r <= -pi2 || even){r = r + pi2; even = !even; }
 	
-	// round to nearest tenth
-	return (double)((int)(__fcos__(r)*10.0))/(10.0);
+	return (__fcos__(r));
 }
 
 // Fast Tangent Degrees
@@ -136,8 +157,7 @@ double ftand(double d){
 	while(r >= pi2  || even){r = r - pi2; even = !even; }
 	while(r <= -pi2 || even){r = r + pi2; even = !even; }
 	
-	// round to nearest tenth
-	return (double)((int)(__ftan__(r)*10.0))/(10.0);
+	return (__ftan__(r));
 }
 
 // -2rad <= r <= 2rad :: +- 0.01
@@ -148,8 +168,7 @@ double msin(double r){
 	while(r >= pi2  || even){r = r - pi2; even = !even; }
 	while(r <= -pi2 || even){r = r + pi2; even = !even; }
 	
-	// round to nearest tenth
-	return (double)((int)(__sin__(r)*10.0))/(10.0);
+	return (__sin__(r));
 }
 
 // -2rad <= r <= 2rad :: +- 0.01
@@ -160,8 +179,7 @@ double mcos(double r){
 	while(r >= pi2  || even){r = r - pi2; even = !even; }
 	while(r <= -pi2 || even){r = r + pi2; even = !even; }
 	
-	// round to nearest tenth
-	return (double)((int)(__cos__(r)*10.0))/(10.0);
+	return (__cos__(r));
 }
 
 // -2rad <= r <= 2rad :: +- 0.01
@@ -172,8 +190,7 @@ double mtan(double r){
 	while(r >= pi2  || even){r = r - pi2; even = !even; }
 	while(r <= -pi2 || even){r = r + pi2; even = !even; }
 	
-	// round to nearest tenth
-	return (double)((int)(__tan__(r)*10.0))/(10.0);
+	return (__tan__(r));
 }
 
 double msind(double d){
@@ -183,8 +200,7 @@ double msind(double d){
 	while(r >= pi2  || even){r = r - pi2; even = !even; }
 	while(r <= -pi2 || even){r = r + pi2; even = !even; }
 	
-	// round to nearest tenth
-	return (double)((int)(__sin__(r)*10.0))/(10.0);
+	return (__sin__(r));
 }
 
 double mcosd(double d){
@@ -194,8 +210,7 @@ double mcosd(double d){
 	while(r >= pi2  || even){r = r - pi2; even = !even; }
 	while(r <= -pi2 || even){r = r + pi2; even = !even; }
 	
-	// round to nearest tenth
-	return (double)((int)(__cos__(r)*10.0))/(10.0);
+	return (__cos__(r));
 }
 
 double mtand(double d){
@@ -205,8 +220,7 @@ double mtand(double d){
 	while(r >= pi2  || even){r = r - pi2; even = !even; }
 	while(r <= -pi2 || even){r = r + pi2; even = !even; }
 	
-	// round to nearest tenth
-	return (double)((int)(__tan__(r)*10.0))/(10.0);
+	return (__tan__(r));
 }
 
 int commonSquare(double psqr){

@@ -5,6 +5,12 @@
 extern const double pi;
 extern const double pi2;
 
+double max(double,double);
+int imax(int,int);
+double amax(double,double);
+int iamax(int,int);
+double map(double,double,double,double,double);
+int imap(int,int,int,int,int);
 long long int factorial(int);
 double mpow(double,int);
 double rad(double);

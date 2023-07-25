@@ -131,4 +131,32 @@ complex_Class complex_ClassNew(double r, double i){
     return ret;
 }
 
+complex_Class Complex = {
+    &complex_ClassNew,
+    &Cadd,&Csub,&Cmul,
+    &Csadd,&Cssub,&Csmul,
+
+    /* You have to use the standard libary for this */
+	#ifdef _INC_STDIO
+    &Cprint,
+	#endif
+	
+	&CRe,&CImg,&CRe,&CImg,
+    {0,0}
+};
+
+complex_Class I = {
+    &complex_ClassNew,
+    &Cadd,&Csub,&Cmul,
+    &Csadd,&Cssub,&Csmul,
+
+	/* You have to use the standard libary for this */
+	#ifdef _INC_STDIO
+    &Cprint,
+	#endif
+	
+	&CRe,&CImg,&CRe,&CImg,
+    {0,1}
+};
+
 #endif

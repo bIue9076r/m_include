@@ -1,14 +1,7 @@
 #ifndef VECTOR_C
 #define VECTOR_C
+#include "math.h"
 #include "vector.h"
-
-double max(double n, double num){
-    return n > 0 ? (n > num ? (n) : (num) ) : (-n);
-}
-
-int imax(int n,int num){
-    return n > 0 ? (n > num ? (n) : (num) ) : (-n);
-}
 
 vec vadd(vec* A, vec* B){
     return (vec){A->x + B->x,A->y + B->y,A->z + B->z};
@@ -34,11 +27,19 @@ vec vcross(vec* A, vec* B){
     };
 }
 
-vec clamp(vec* A,double num){
+double vmag(vec* A){
+	return m_sqrt((A->x * A->x) + (A->y * A->y) + (A->z * A->z));
+}
+
+vec vunit(vec* A){
+	return vmul(A,1.0/vmag(A));
+}
+
+vec vclamp(vec* A,double num){
     return (vec){
-        max(A->x,num),
-        max(A->y,num),
-        max(A->z,num),
+        amax(A->x,num),
+        amax(A->y,num),
+        amax(A->z,num),
     };
 }
 
@@ -72,7 +73,7 @@ vector vec_cross(vector* A, vector* B){
 
 vector vec_clamp(vector* A, double m){
     vector ret = vec_new(0,0,0);
-    ret.vector = (vec){max(A->vector.x,m),max(A->vector.y,m),max(A->vector.z,m)};
+    ret.vector = vclamp(A,m);
     return ret;
 }
 
@@ -116,5 +117,21 @@ vector vec_new(double x, double y, double z){
         {x,y,z},
     };
 }
+
+const vector Vector = {
+    &vec_new,
+    &vec_add,&vec_sub,
+    &vec_mul,&vec_dot,
+    &vec_cross,&vec_clamp,
+    &vec_x,&vec_x,
+    &vec_y,&vec_y,
+    &vec_z,&vec_z,
+
+	/* You have to use the standard libary for this*/
+	#ifdef _INC_STDIO
+    &vprint,&vfprint,
+	#endif
+    {0,0,0},
+};
 
 #endif
