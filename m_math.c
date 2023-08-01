@@ -5,30 +5,30 @@
 const double pi = 3.1415f;
 const double pi2 = pi/2.0f;
 
-double max(double n, double num){
-    return n > num ? (num) : (n);
+double max(double n, double max){
+    return n > max ? (max) : (n);
 }
 
-int imax(int n,int num){
-    return n > num ? (num) : (n);
+int imax(int n,int max){
+    return n > max ? (max) : (n);
 }
 
-double amax(double n, double num){
-    return n > num ? (num) : ((n > 0) ? (n) : (0));
+double amax(double n, double max){
+    return n > max ? (max) : ((n > 0) ? (n) : (0));
 }
 
-int iamax(int n,int num){
-    return n > num ? (num) : ((n > 0) ? (n) : (0));
+int iamax(int n,int max){
+    return n > max ? (max) : ((n > 0) ? (n) : (0));
 }
 
 double map(double n, double a, double b, double c, double d){
 	// map n from range [a,b] to [c,d]
-	return (((n - a)*((d - b)/(c - a))) + c);
+	return (((n - a)*((d - c)/(b - a))) + c);
 }
 
 int imap(int n, int a, int b, int c, int d){
 	// map n from range [a,b] to [c,d]
-	return (((n - a)*((d - b)/(c - a))) + c);
+	return (((n - a)*((d - c)/(b - a))) + c);
 }
 
 double mpow(double b,int n){
@@ -37,8 +37,12 @@ double mpow(double b,int n){
 	return r;
 }
 
-double rad(double r){
-	return (r * pi)/180.0;
+double rad(double d){
+	return (d * pi)/180.0;
+}
+
+double deg(double r){
+	return (r * 180.0)/pi;
 }
 
 long long int factorial(int n){
@@ -63,22 +67,17 @@ long long int factorial(int n){
 
 // Fast Sine Radians
 double __fsin__(double r){
-	return r - mpow(r,3)/(6) + mpow(r,5)/(120);
+	return r - mpow(r,3)/(6) + mpow(r,5)/(120) - mpow(r,7)/(5040);
 }
 
 // Fast Cosine Radians
 double __fcos__(double r){
-	return 1 - mpow(r,2)/(2) + mpow(r,4)/(24);
-}
-
-// Fast Tangent Radians
-double __ftan__(double r){
-	return (__fsin__(r)/__fcos__(r));
+	return 1 - mpow(r,2)/(2) + mpow(r,4)/(24) - mpow(r,6)/(720);
 }
 
 // Sine Radians
 double __sin__(double r){
-	return r - mpow(r,3)/(6) + mpow(r,5)/(120) - mpow(r,7)/(5040);
+	return r - mpow(r,3)/(6) + mpow(r,5)/(120) - mpow(r,7)/(5040) + mpow(r,9)/(362880);
 }
 
 // Cosine Radians
@@ -86,141 +85,246 @@ double __cos__(double r){
 	return 1 - mpow(r,2)/(2) + mpow(r,4)/(24) - mpow(r,6)/(720) + mpow(r,8)/(40320);
 }
 
-// Tangent Radians
-double __tan__(double r){
-	return (__sin__(r)/__cos__(r));
-}
-
 // Fast Sine Radians
 double fsin(double r){
-	Bool even = False;
-	if(r == pi2 && r == -pi2){return __fsin__(r);}
-	while(r >= pi2  || even){r = r - pi2; even = !even; }
-	while(r <= -pi2 || even){r = r + pi2; even = !even; }
-	
-	return (__fsin__(r));
+	while(r < -pi){r = r + pi;}
+	while(r > pi) {r = r - pi;}
+
+	int mode = 0;
+	if(r > -pi2){mode = 1;}
+	if(r > pi2) {mode = 2;}
+
+	switch(mode){
+		case 0:
+			return (-__fsin__(r + pi));
+		break;
+
+		case 1:
+			return (__fsin__(r));
+		break;
+
+		case 2:
+			return (-__fsin__(r - pi));
+		break;
+
+		default:
+			return (__fsin__(r));
+	}
 }
 
 // Fast Cosine Radians
 double fcos(double r){
-	Bool even = False;
-	if(r == pi2 && r == -pi2){return __fcos__(r);}
-	while(r >= pi2  || even){r = r - pi2; even = !even; }
-	while(r <= -pi2 || even){r = r + pi2; even = !even; }
-	
-	return (__fcos__(r));
+	while(r < -pi){r = r + pi;}
+	while(r > pi) {r = r - pi;}
+
+	int mode = 0;
+	if(r > -pi2){mode = 1;}
+	if(r > pi2) {mode = 2;}
+
+	switch(mode){
+		case 0:
+			return (-__fcos__(r + pi));
+		break;
+
+		case 1:
+			return (__fcos__(r));
+		break;
+
+		case 2:
+			return (-__fcos__(r - pi));
+		break;
+
+		default:
+			return (__fcos__(r));
+	}
 }
 
 // Fast Tangent Radians
 double ftan(double r){
-	Bool even = False;
-	if(r == pi2 && r == -pi2){return __ftan__(r);}
-	while(r >= pi2  || even){r = r - pi2; even = !even; }
-	while(r <= -pi2 || even){r = r + pi2; even = !even; }
-	
-	return (__ftan__(r));
+	return (fsin(r) / fcos(r));
 }
 
 // Fast Sine Degrees
-// -140deg <= d <= 140deg :: +- 0.01
-// -180deg <= d <= 180deg :: +- 0.1
 double fsind(double d){
 	double r = rad(d);
-	Bool even = False;
-	if(r == pi2 && r == -pi2){return __fsin__(r);}
-	while(r >= pi2  || even){r = r - pi2; even = !even; }
-	while(r <= -pi2 || even){r = r + pi2; even = !even; }
-	
-	return (__fsin__(r));
+	while(r < -pi){r = r + pi;}
+	while(r > pi) {r = r - pi;}
+
+	int mode = 0;
+	if(r > -pi2){mode = 1;}
+	if(r > pi2) {mode = 2;}
+
+	switch(mode){
+		case 0:
+			return (-__fsin__(r + pi));
+		break;
+
+		case 1:
+			return (__fsin__(r));
+		break;
+
+		case 2:
+			return (-__fsin__(r - pi));
+		break;
+
+		default:
+			return (__fsin__(r));
+	}
 }
 
 // Fast Cosine Degrees
-// -160deg <= d <= 160deg :: +- 0.01
-// -200deg <= d <= 200deg :: +- 0.1
 double fcosd(double d){
 	double r = rad(d);
-	Bool even = False;
-	if(r == pi2 && r == -pi2){return __fcos__(r);}
-	while(r >= pi2  || even){r = r - pi2; even = !even; }
-	while(r <= -pi2 || even){r = r + pi2; even = !even; }
-	
-	return (__fcos__(r));
+	while(r < -pi){r = r + pi;}
+	while(r > pi) {r = r - pi;}
+
+	int mode = 0;
+	if(r > -pi2){mode = 1;}
+	if(r > pi2) {mode = 2;}
+
+	switch(mode){
+		case 0:
+			return (-__fcos__(r + pi));
+		break;
+
+		case 1:
+			return (__fcos__(r));
+		break;
+
+		case 2:
+			return (-__fcos__(r - pi));
+		break;
+
+		default:
+			return (__fcos__(r));
+	}
 }
 
 // Fast Tangent Degrees
-// -140deg <= d <= 140deg :: +- 0.01
-// -180deg <= d <= 180deg :: +- 0.1
 double ftand(double d){
 	double r = rad(d);
-	Bool even = False;
-	if(r == pi2 && r == -pi2){return __ftan__(r);}
-	while(r >= pi2  || even){r = r - pi2; even = !even; }
-	while(r <= -pi2 || even){r = r + pi2; even = !even; }
-	
-	return (__ftan__(r));
+	return (fsin(r)/fcos(r));
 }
 
-// -2rad <= r <= 2rad :: +- 0.01
-// -3rad <= r <= 3rad :: +- 0.1
+// Sine Radians
 double msin(double r){
-	Bool even = False;
-	if(r == pi2 && r == -pi2){return __sin__(r);}
-	while(r >= pi2  || even){r = r - pi2; even = !even; }
-	while(r <= -pi2 || even){r = r + pi2; even = !even; }
-	
-	return (__sin__(r));
+	while(r < -pi){r = r + pi;}
+	while(r > pi) {r = r - pi;}
+
+	int mode = 0;
+	if(r > -pi2){mode = 1;}
+	if(r > pi2) {mode = 2;}
+
+	switch(mode){
+		case 0:
+			return (-__sin__(r + pi));
+		break;
+
+		case 1:
+			return (__sin__(r));
+		break;
+
+		case 2:
+			return (-__sin__(r - pi));
+		break;
+
+		default:
+			return (__sin__(r));
+	}
 }
 
-// -2rad <= r <= 2rad :: +- 0.01
-// -3rad <= r <= 3rad :: +- 0.1
+// Cosine Radians
 double mcos(double r){
-	Bool even = False;
-	if(r == pi2 && r == -pi2){return __cos__(r);}
-	while(r >= pi2  || even){r = r - pi2; even = !even; }
-	while(r <= -pi2 || even){r = r + pi2; even = !even; }
-	
-	return (__cos__(r));
+	while(r < -pi){r = r + pi;}
+	while(r > pi) {r = r - pi;}
+
+	int mode = 0;
+	if(r > -pi2){mode = 1;}
+	if(r > pi2) {mode = 2;}
+
+	switch(mode){
+		case 0:
+			return (-__cos__(r + pi));
+		break;
+
+		case 1:
+			return (__cos__(r));
+		break;
+
+		case 2:
+			return (-__cos__(r - pi));
+		break;
+
+		default:
+			return (__cos__(r));
+	}
 }
 
-// -2rad <= r <= 2rad :: +- 0.01
-// -3rad <= r <= 3rad :: +- 0.1
+// Tangent Radians
 double mtan(double r){
-	Bool even = False;
-	if(r == pi2 && r == -pi2){return __tan__(r);}
-	while(r >= pi2  || even){r = r - pi2; even = !even; }
-	while(r <= -pi2 || even){r = r + pi2; even = !even; }
-	
-	return (__tan__(r));
+	return (msin(r)/mcos(r));
 }
 
+// Sine Degrees
 double msind(double d){
 	double r = rad(d);
-	Bool even = False;
-	if(r == pi2 && r == -pi2){return __sin__(r);}
-	while(r >= pi2  || even){r = r - pi2; even = !even; }
-	while(r <= -pi2 || even){r = r + pi2; even = !even; }
-	
-	return (__sin__(r));
+	while(r < -pi){r = r + pi;}
+	while(r > pi) {r = r - pi;}
+
+	int mode = 0;
+	if(r > -pi2){mode = 1;}
+	if(r > pi2) {mode = 2;}
+
+	switch(mode){
+		case 0:
+			return (-__sin__(r + pi));
+		break;
+
+		case 1:
+			return (__sin__(r));
+		break;
+
+		case 2:
+			return (-__sin__(r - pi));
+		break;
+
+		default:
+			return (__sin__(r));
+	}
 }
 
+// Cosine Degrees
 double mcosd(double d){
 	double r = rad(d);
-	Bool even = False;
-	if(r == pi2 && r == -pi2){return __cos__(r);}
-	while(r >= pi2  || even){r = r - pi2; even = !even; }
-	while(r <= -pi2 || even){r = r + pi2; even = !even; }
-	
-	return (__cos__(r));
+	while(r < -pi){r = r + pi;}
+	while(r > pi) {r = r - pi;}
+
+	int mode = 0;
+	if(r > -pi2){mode = 1;}
+	if(r > pi2) {mode = 2;}
+
+	switch(mode){
+		case 0:
+			return (-__cos__(r + pi));
+		break;
+
+		case 1:
+			return (__cos__(r));
+		break;
+
+		case 2:
+			return (-__cos__(r - pi));
+		break;
+
+		default:
+			return (__cos__(r));
+	}
 }
 
+// Tangent Degrees
 double mtand(double d){
 	double r = rad(d);
-	Bool even = False;
-	if(r == pi2 && r == -pi2){return __tan__(r);}
-	while(r >= pi2  || even){r = r - pi2; even = !even; }
-	while(r <= -pi2 || even){r = r + pi2; even = !even; }
-	
-	return (__tan__(r));
+	return (msin(r)/mcos(r));
 }
 
 int commonSquare(double psqr){
@@ -237,6 +341,7 @@ int commonSquare(double psqr){
 	return 0;
 }
 
+// Square Root
 double m_sqrt(double n){
 	if (n < 1){return 0;}
 	Bool cmn = commonSquare(n);

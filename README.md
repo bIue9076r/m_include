@@ -6,14 +6,10 @@
 <br>
 
 ## Updates:
-* moved `vector Vector` to `vector.c`
-* moved `complex_Class Complex` to `comp.c`
-* `vector.c` now includes `m_math.h`
-* `m_math.c` new functions
-	* `map` and `imap`
-	* `max`, `imax`, `amax`, and `iamax` from `vector.c`
-* `str.h`: `charisof` decleration
-* `fatstr.h`: `fstn` decleration
+* `m_math.c`: `msin`, `mcos`, `mtan`, range extended.
+* `t_m_math.c`: Look Up Table Functions.
+* `t_tables.c`: Look Up Tables.
+* `tmltg.c`: Look Up Table Generator.
 
 <br>
 
@@ -30,5 +26,7 @@
 > random.c:		Pseudo-random number table
 > s_m_math.c:	Slow Math functions with varied precision
 > str.c:		String functions
+> t_m_math.c:	Table Math functions
+> t_tables.c:	Math Look Up Table
 > vector.c:		Vector data type
 ```
