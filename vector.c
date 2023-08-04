@@ -73,7 +73,7 @@ vector vec_cross(vector* A, vector* B){
 
 vector vec_clamp(vector* A, double m){
     vector ret = vec_new(0,0,0);
-    ret.vector = vclamp(A,m);
+    ret.vector = vclamp(&A->vector,m);
     return ret;
 }
 
@@ -119,6 +119,22 @@ vector vec_new(double x, double y, double z){
 }
 
 const vector Vector = {
+    &vec_new,
+    &vec_add,&vec_sub,
+    &vec_mul,&vec_dot,
+    &vec_cross,&vec_clamp,
+    &vec_x,&vec_x,
+    &vec_y,&vec_y,
+    &vec_z,&vec_z,
+
+	/* You have to use the standard libary for this*/
+	#ifdef _INC_STDIO
+    &vprint,&vfprint,
+	#endif
+    {0,0,0},
+};
+
+const vector V = {
     &vec_new,
     &vec_add,&vec_sub,
     &vec_mul,&vec_dot,
