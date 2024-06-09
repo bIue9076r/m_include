@@ -87,8 +87,8 @@ double __cos__(double r){
 
 // Fast Sine Radians
 double fsin(double r){
-	while(r < -pi){r = r + pi;}
-	while(r > pi) {r = r - pi;}
+	while(r < -pi){r = r + (2*pi);}
+	while(r > pi) {r = r - (2*pi);}
 
 	int mode = 0;
 	if(r > -pi2){mode = 1;}
@@ -114,8 +114,8 @@ double fsin(double r){
 
 // Fast Cosine Radians
 double fcos(double r){
-	while(r < -pi){r = r + pi;}
-	while(r > pi) {r = r - pi;}
+	while(r < -pi){r = r + (2*pi);}
+	while(r > pi) {r = r - (2*pi);}
 
 	int mode = 0;
 	if(r > -pi2){mode = 1;}
@@ -147,8 +147,8 @@ double ftan(double r){
 // Fast Sine Degrees
 double fsind(double d){
 	double r = rad(d);
-	while(r < -pi){r = r + pi;}
-	while(r > pi) {r = r - pi;}
+	while(r < -pi){r = r + (2*pi);}
+	while(r > pi) {r = r - (2*pi);}
 
 	int mode = 0;
 	if(r > -pi2){mode = 1;}
@@ -175,8 +175,8 @@ double fsind(double d){
 // Fast Cosine Degrees
 double fcosd(double d){
 	double r = rad(d);
-	while(r < -pi){r = r + pi;}
-	while(r > pi) {r = r - pi;}
+	while(r < -pi){r = r + (2*pi);}
+	while(r > pi) {r = r - (2*pi);}
 
 	int mode = 0;
 	if(r > -pi2){mode = 1;}
@@ -208,8 +208,8 @@ double ftand(double d){
 
 // Sine Radians
 double msin(double r){
-	while(r < -pi){r = r + pi;}
-	while(r > pi) {r = r - pi;}
+	while(r < -pi){r = r + (2*pi);}
+	while(r > pi) {r = r - (2*pi);}
 
 	int mode = 0;
 	if(r > -pi2){mode = 1;}
@@ -235,8 +235,8 @@ double msin(double r){
 
 // Cosine Radians
 double mcos(double r){
-	while(r < -pi){r = r + pi;}
-	while(r > pi) {r = r - pi;}
+	while(r < -pi){r = r + (2*pi);}
+	while(r > pi) {r = r - (2*pi);}
 
 	int mode = 0;
 	if(r > -pi2){mode = 1;}
@@ -268,8 +268,8 @@ double mtan(double r){
 // Sine Degrees
 double msind(double d){
 	double r = rad(d);
-	while(r < -pi){r = r + pi;}
-	while(r > pi) {r = r - pi;}
+	while(r < -pi){r = r + (2*pi);}
+	while(r > pi) {r = r - (2*pi);}
 
 	int mode = 0;
 	if(r > -pi2){mode = 1;}
@@ -296,8 +296,8 @@ double msind(double d){
 // Cosine Degrees
 double mcosd(double d){
 	double r = rad(d);
-	while(r < -pi){r = r + pi;}
-	while(r > pi) {r = r - pi;}
+	while(r < -pi){r = r + (2*pi);}
+	while(r > pi) {r = r - (2*pi);}
 
 	int mode = 0;
 	if(r > -pi2){mode = 1;}
